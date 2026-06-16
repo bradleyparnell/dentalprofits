@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPI — Strategy Working Session</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f5f7; color: #1a1a2e; }
+
+    .header { background: #1a2e1a; padding: 36px 48px; color: white; }
+    .header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+    .header p { color: #a8c5a8; margin-top: 6px; font-size: 14px; }
+    .header .date { color: #7dc87d; font-size: 13px; font-weight: 600; margin-top: 10px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 36px 24px; }
+
+    .section { background: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 22px; border: 1px solid #e5e7eb; }
+    .section h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #2d6a2d; margin-bottom: 18px; border-bottom: 2px solid #e5f0e5; padding-bottom: 10px; }
+    .section p { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 20px; }
+    .section li { font-size: 14px; line-height: 1.65; color: #374151; margin-bottom: 7px; }
+
+    .hero-box { background: #1a2e1a; color: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 22px; }
+    .hero-box h2 { color: #7dc87d; font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+    .hero-box p { color: #c8dcc8; font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
+    .hero-box p:last-child { margin-bottom: 0; }
+    .hero-box strong { color: white; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 16px; }
+
+    .card { background: #f8faf8; border: 1px solid #d4e8d4; border-radius: 8px; padding: 16px 18px; }
+    .card h4 { font-size: 13px; font-weight: 700; color: #1a2e1a; margin-bottom: 6px; }
+    .card p { font-size: 13px; color: #4b5563; line-height: 1.55; margin: 0; }
+
+    .decision-card { background: #fffbea; border: 1.5px solid #f0c040; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
+    .decision-card h4 { font-size: 14px; font-weight: 700; color: #7a5200; margin-bottom: 8px; }
+    .decision-card p { font-size: 13px; color: #5a4200; line-height: 1.6; margin-bottom: 8px; }
+    .decision-card .options { font-size: 13px; color: #374151; }
+    .decision-card .options span { display: inline-block; background: white; border: 1px solid #e5c050; border-radius: 4px; padding: 3px 10px; margin: 3px 4px 3px 0; color: #5a4200; font-weight: 600; }
+
+    .ready-tag { display: inline-block; background: #d4edda; color: #155724; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+    .new-tag { display: inline-block; background: #cce5ff; color: #004085; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+    .decide-tag { display: inline-block; background: #fff3cd; color: #856404; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+
+    .email-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+    .email-row:last-child { border-bottom: none; }
+    .email-num { background: #2d6a2d; color: white; font-size: 12px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .email-info h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
+    .email-info p { font-size: 13px; color: #6b7280; line-height: 1.5; margin: 0; }
+
+    .anchor-line { background: #f0f9f0; border-left: 4px solid #2d6a2d; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 10px; }
+    .anchor-line p { font-size: 14px; color: #1a2e1a; margin: 0; font-style: italic; }
+    .anchor-line p strong { font-style: normal; }
+
+    .step-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+    .step-row:last-child { border-bottom: none; }
+    .step-num { background: #1a2e1a; color: #7dc87d; font-size: 13px; font-weight: 800; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-info h4 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+    .step-info p { font-size: 13px; color: #6b7280; line-height: 1.55; margin: 0; }
+    .owner-dpi { display: inline-block; background: #e8f4e8; color: #2d6a2d; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 6px; }
+    .owner-gr { display: inline-block; background: #e0eeff; color: #0047b3; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 6px; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+    th { background: #f0f9f0; text-align: left; padding: 10px 12px; font-weight: 600; color: #2d6a2d; border-bottom: 2px solid #d4e8d4; }
+    td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; color: #374151; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .header { padding: 24px 20px; }
+      .container { padding: 20px 14px; }
+      .section { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Dental Profits Institute — Strategy Working Session</h1>
+  <p>GenieRocket &amp; DPI · Clarifying Direction &amp; Launch Plan</p>
+  <div class="date">📅 June 2026</div>
+</div>
+
+<div class="container">
+
+  <!-- WHERE WE ARE -->
+  <div class="hero-box">
+    <h2>📍 Where We Are</h2>
+    <p>The original email campaign targeted the <strong>SI client list</strong> — a warm but limited audience who already knows DPI. Those emails are built and sent.</p>
+    <p>DPI has identified a much larger opportunity: <strong>owner-doctors broadly ($500K–$15M revenue)</strong> who are growing collections but not take-home. This is a cold audience that's never heard of DPI — which means the messaging needs to do more heavy lifting.</p>
+    <p>The client has built a complete marketing package with a new angle, new copy, and new visuals — and has shot <strong>real client testimonial videos</strong> that are now in hand. This meeting is about deciding how to deploy all of it.</p>
+  </div>
+
+  <!-- THE NEW ANGLE -->
+  <div class="section">
+    <h2>🏈 The New Positioning — "Defense Wins Championships"</h2>
+    <p>This is the strategic differentiator that makes DPI stand out from every other dental consultant. Every other consultant is coaching offense — production, case acceptance, new patients. Nobody is coaching defense.</p>
+
+    <div class="anchor-line"><p><strong>"Offense sells tickets. Defense wins championships."</strong> — Bear Bryant</p></div>
+    <div class="anchor-line"><p><strong>"Production is vanity. Profit is sanity."</strong></p></div>
+    <div class="anchor-line"><p><strong>"Your CPA does taxes. We do profit."</strong></p></div>
+    <div class="anchor-line"><p><strong>"Same goals. Different system. Different results."</strong></p></div>
+    <div class="anchor-line"><p><strong>"Trust the process."</strong> — Nick Saban, 7 championships</p></div>
+
+    <p style="margin-top:14px;">These lines are the consistent brand voice across every channel. They remove blame from the doctor ("you don't rise to your goals, you fall to your systems") and position DPI as the missing piece — not a criticism of what they're already doing.</p>
+  </div>
+
+  <!-- WHAT'S IN HAND -->
+  <div class="section">
+    <h2>✅ What's Already Built &amp; Ready</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h4>📧 5-Email Sequence</h4>
+        <p>Hook, Villain, Method, Proof, Invitation. Full copy written. Needs video link + booking link.</p>
+      </div>
+      <div class="card">
+        <h4>🎥 Client Testimonial Videos</h4>
+        <p>Shot on client trips — in hand now. Need to identify strongest clip and get hosted.</p>
+      </div>
+      <div class="card">
+        <h4>📱 2 Carousel Designs</h4>
+        <p>Carousel A (Quad System — football theme) + Carousel B (Same Goal / Systems). Fully designed.</p>
+      </div>
+      <div class="card">
+        <h4>💼 4 LinkedIn Posts</h4>
+        <p>Long-form authority posts. Contrarian take, problem, proof, goals vs. systems. Ready.</p>
+      </div>
+      <div class="card">
+        <h4>📸 4 Instagram Captions</h4>
+        <p>Paired to the two carousel designs. Ready to post once video is live.</p>
+      </div>
+      <div class="card">
+        <h4>📣 2 Facebook Ad Copies</h4>
+        <p>Long-form, ready for organic or boosted. Need video link to finalize.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 18px;"><strong>Previously built by GenieRocket</strong> (for SI list / warm audience):</p>
+    <table>
+      <thead>
+        <tr><th>Email</th><th>Audience</th><th>Role Going Forward</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Main promo (P&amp;L story)</td><td>SI list (warm)</td><td>Keep for warm re-engagement; new Email 1 replaces for cold outreach</td></tr>
+        <tr><td>Follow-up email</td><td>SI list (warm)</td><td>Retire for cold audience; keep for warm nurture</td></tr>
+        <tr><td>Video story email</td><td>SI list (warm)</td><td>Can be used standalone as a video drop for warm list</td></tr>
+        <tr><td>Bubba plain-text email</td><td>Any</td><td>Valuable as a mid-sequence pattern interrupt or personal follow-up</td></tr>
+        <tr><td>Objection handler</td><td>Any</td><td>Use as Email 6 or post-call nurture — still highly relevant</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- THE 5-EMAIL SEQUENCE -->
+  <div class="section">
+    <h2>📧 New 5-Email Sequence — Designed for Cold Owner-Doctor Outreach</h2>
+    <p>Each email is 3–4 days apart. Every email funnels to the testimonial video first, then the booking link.</p>
+
+    <div class="email-row">
+      <div class="email-num">1</div>
+      <div class="email-info">
+        <h4>The Hook — Name the Pain <span class="ready-tag">COPY READY</span></h4>
+        <p>"Production is vanity. Profit is sanity." Opens with offense/defense framing. Introduces the video. CTA: Watch the video.</p>
+      </div>
+    </div>
+    <div class="email-row">
+      <div class="email-num">2</div>
+      <div class="email-info">
+        <h4>The Villain — Why This Happens <span class="ready-tag">COPY READY</span></h4>
+        <p>"Profitable stagnation." Names the enemy so the doctor feels understood. CTA: Watch the video.</p>
+      </div>
+    </div>
+    <div class="email-row">
+      <div class="email-num">3</div>
+      <div class="email-info">
+        <h4>The Method — The System <span class="ready-tag">COPY READY</span></h4>
+        <p>Introduces the Quad System and the PTA Process. James Clear "systems" quote. CTA: Watch video + book call.</p>
+      </div>
+    </div>
+    <div class="email-row">
+      <div class="email-num">4</div>
+      <div class="email-info">
+        <h4>The Proof — Results That Close <span class="ready-tag">COPY READY</span></h4>
+        <p>36% EBITDA average. $100K–$800K per client. Scoreboard language. CTA: Book the call.</p>
+      </div>
+    </div>
+    <div class="email-row">
+      <div class="email-num">5</div>
+      <div class="email-info">
+        <h4>The Invitation — Trust the Process <span class="ready-tag">COPY READY</span></h4>
+        <p>Nick Saban / 7 championships close. Soft reply CTA ("just reply yes"). CTA: Video + book call.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY DECISIONS -->
+  <div class="section">
+    <h2>🤔 Key Decisions to Make Together</h2>
+    <p>These are the open questions that will shape the launch. Walk through each one in this meeting.</p>
+
+    <div class="decision-card">
+      <h4>1. Which video leads the campaign?</h4>
+      <p>Watch the testimonial videos together and identify the strongest 60–90 second clip. The whole campaign funnels here — this decision drives everything else.</p>
+      <div class="options">
+        <span>Most emotional story</span>
+        <span>Best on-camera client</span>
+        <span>Strongest specific result ($X increase)</span>
+        <span>Combine clips into one highlight reel</span>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <h4>2. Where will the video be hosted?</h4>
+      <p>The video link needs to be finalized before any emails or social posts go live. Pick a platform and get it uploaded.</p>
+      <div class="options">
+        <span>Vimeo</span>
+        <span>YouTube (unlisted)</span>
+        <span>Wistia</span>
+        <span>Landing page embed</span>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <h4>3. What is the booking link / call CTA?</h4>
+      <p>Every email and social post points to a booking link. Is this a Calendly, a GHL calendar, or a dedicated landing page? The link needs to be confirmed before formatting all emails.</p>
+      <div class="options">
+        <span>Existing Calendly</span>
+        <span>GHL booking page</span>
+        <span>New landing page</span>
+        <span>Keep current: coaresults.railheadceo.com</span>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <h4>4. Who is sending the cold outreach — and how?</h4>
+      <p>The new target is owner-doctors who don't know DPI yet. Is this a cold email list purchase, an organic LinkedIn play, paid social, or a combination?</p>
+      <div class="options">
+        <span>Cold email list</span>
+        <span>LinkedIn organic</span>
+        <span>Facebook/IG paid ads</span>
+        <span>Referral from existing clients</span>
+        <span>Mix of all</span>
+      </div>
+    </div>
+
+    <div class="decision-card">
+      <h4>5. How should the two campaigns run in parallel?</h4>
+      <p>The SI warm list still exists. Should the warm list get a separate track (existing emails + Bubba personal email) while the new sequence goes to cold owner-doctors — or do we consolidate everything?</p>
+      <div class="options">
+        <span>Two separate tracks</span>
+        <span>Merge into one sequence</span>
+        <span>Pause warm list, focus on cold</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNCH PLAN -->
+  <div class="section">
+    <h2>🚀 Recommended Launch Plan</h2>
+
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div class="step-info">
+        <h4>Select the lead video <span class="owner-dpi">DPI</span></h4>
+        <p>Watch the testimonials together. Pick the strongest clip or combine into a 60–90 second highlight. Confirm hosting platform.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div class="step-info">
+        <h4>Host and link the video <span class="owner-dpi">DPI</span></h4>
+        <p>Upload to Vimeo / YouTube / Wistia. Share the URL with GenieRocket to drop into all templates.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div class="step-info">
+        <h4>Format all 5 new emails into GHL-ready HTML <span class="owner-gr">GenieRocket</span></h4>
+        <p>Same branded style as existing templates. Ready to build now — just waiting on video URL and booking link confirmation.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">4</div>
+      <div class="step-info">
+        <h4>Set up the cold outreach channel <span class="owner-dpi">DPI</span></h4>
+        <p>Identify the source of owner-doctor contacts and load into GHL. Confirm sending domain is warmed up.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">5</div>
+      <div class="step-info">
+        <h4>Deploy carousels on LinkedIn + Instagram <span class="owner-dpi">DPI</span> <span class="owner-gr">GenieRocket</span></h4>
+        <p>Both carousel designs are ready. Post Carousel A (Quad System) first, followed by Carousel B a few days later. Pair with the written captions from the package.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">6</div>
+      <div class="step-info">
+        <h4>Launch the 5-email sequence to cold list <span class="owner-gr">GenieRocket</span></h4>
+        <p>Once video is hosted and list is loaded. Email 1 goes out first. 3–4 day cadence through all 5.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">7</div>
+      <div class="step-info">
+        <h4>Monitor, optimize, and add Email 6 if needed <span class="owner-gr">GenieRocket</span></h4>
+        <p>The objection-handler email is built and ready to add as Email 6 for anyone who opens but doesn't book. Review open/click rates after Email 3 goes out.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTES BOX -->
+  <div class="section" style="border: 1.5px dashed #d4e8d4; background: #f9fdf9;">
+    <h2>📝 Meeting Notes</h2>
+    <p style="color: #9ca3af; font-style: italic;">Use this space to capture decisions made during the meeting...</p>
+    <br><br><br><br><br>
+  </div>
+
+</div>
+</body>
+</html>
