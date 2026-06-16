@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>DPI Social Content</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; padding:0; font-family: Arial, Helvetica, sans-serif; background:#f0f4f8; color:#333; }
+    .header { background:#0d3b6e; padding:20px 32px; display:flex; align-items:center; gap:16px; }
+    .header img { height:40px; }
+    .header h1 { color:#fff; font-size:20px; margin:0; }
+    .tabs { display:flex; gap:0; background:#0a2d56; padding:0 32px; }
+    .tab { padding:12px 24px; color:#7ec8e3; font-size:14px; font-weight:700; cursor:pointer; border-bottom:3px solid transparent; text-transform:uppercase; letter-spacing:1px; }
+    .tab.active { color:#fff; border-bottom-color:#f59e0b; }
+    .tab:hover { color:#fff; }
+    .content { display:none; padding:32px; max-width:900px; margin:0 auto; }
+    .content.active { display:block; }
+    .post-card { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); margin-bottom:24px; overflow:hidden; }
+    .post-header { background:linear-gradient(135deg,#0d3b6e,#1565c0); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+    .post-header h3 { color:#fff; margin:0; font-size:16px; }
+    .post-label { background:rgba(255,255,255,0.15); color:#7ec8e3; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 10px; border-radius:4px; }
+    .post-body { padding:24px; }
+    .post-subject { font-size:13px; font-weight:700; color:#0d3b6e; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px; }
+    .post-text { font-size:15px; line-height:1.8; color:#333; white-space:pre-wrap; }
+    .post-visual { background:#f8f9fb; border:1px dashed #c5cfd9; border-radius:6px; padding:14px 18px; margin-bottom:16px; font-size:13px; color:#666; }
+    .post-visual strong { color:#0d3b6e; }
+    .hashtags { margin-top:12px; font-size:13px; color:#1565c0; }
+    .copy-btn { background:#f59e0b; color:#1a1a1a; border:none; padding:8px 18px; border-radius:5px; font-size:13px; font-weight:700; cursor:pointer; float:right; }
+    .copy-btn:hover { background:#d97706; }
+    .note { background:#fef3cd; border-left:4px solid #f59e0b; border-radius:4px; padding:12px 16px; font-size:13px; color:#92400e; margin-bottom:20px; }
+    .section-title { font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#7c3aed; margin:28px 0 12px; }
+    h2 { color:#0d3b6e; margin:0 0 20px; font-size:22px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <img src="https://vibe.filesafe.space/1777060379345832148/attachments/19c0ed22-1cb2-417e-842a-d9b2a15ae93c.png" alt="DPI Logo"/>
+  <h1>Social Media Content</h1>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('linkedin')">LinkedIn</div>
+  <div class="tab" onclick="showTab('instagram')">Instagram</div>
+  <div class="tab" onclick="showTab('facebook')">Facebook</div>
+  <div class="tab" onclick="showTab('copybank')">Copy Bank</div>
+</div>
+
+<!-- LINKEDIN -->
+<div id="linkedin" class="content active">
+  <h2>LinkedIn Posts</h2>
+  <div class="note">All posts end with a direct calendar link. Replace [CALENDAR LINK] before posting. Comment-trigger posts ("Comment PROCESS") work well for algorithm reach - capture leads via DM.</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 1 - The Hook</h3>
+      <span class="post-label">Emotion First</span>
+    </div>
+    <div class="post-body">
+      <div class="post-subject">Recommended visual: bold navy card - "YOU'RE LEAVING $100K IN YOUR PRACTICE RIGHT NOW"</div>
+      <button class="copy-btn" onclick="copyText('li1')">Copy</button>
+      <div id="li1" class="post-text">You can produce $5M and still feel broke.
+
+That's not a failure of effort. It's a failure of system.
+
+Here's what I see over and over: a practice grows - collections climb, staff expands, maybe a second chair gets added. And somehow the owner takes home a smaller percentage than when the practice was half the size.
+
+It even has a name: profitable stagnation.
+
+The reason it happens: everyone is coaching you on offense (more patients, more production). Nobody is coaching you on defense - your overhead, your margins, your cash.
+
+At Dental Profits Institute, we install the defense. The result for our average client: 36% more EBITDA in year one. The smallest added $100K. The largest added nearly $800K. Same practice. Same chairs. A better game plan.
+
+You deserve to make more. Here's how we get you there: [CALENDAR LINK]
+
+#DentalProfitsInstitute #DentalCFO #PracticeOwner #DentalProfits</div>
+      <div class="hashtags">#DentalProfitsInstitute #DentalCFO #PracticeOwner #DentalProfits</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 2 - The Villain</h3>
+      <span class="post-label">Name the Enemy</span>
+    </div>
+    <div class="post-body">
+      <div class="post-subject">Recommended visual: split scoreboard - "Growing Revenue / Shrinking Margin"</div>
+      <button class="copy-btn" onclick="copyText('li2')">Copy</button>
+      <div id="li2" class="post-text">Busier than ever. Broker than you should be.
+
+If that sentence hit a nerve - this is why it happens.
+
+As a practice grows, overhead creeps quietly upward. Wages, supplies, lab, and "just this one" decisions add up. Without a plan and a system watching the defense, the leaks never show up until the year is over and the profit isn't there.
+
+Most practices come to us between the high-60s and mid-70s in overhead. Every point above 60% is profit walking out your door.
+
+We coach our clients to 60% or less - on purpose, by plan, every single month.
+
+The fix isn't more reports. It's a plan built before the year starts, and a simple system to run it.
+
+A goal without a plan is just a wish.
+
+If this hits close to home, let's talk. [CALENDAR LINK]
+
+#DentalCFO #DentalPractice #Profitability #Overhead</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 3 - The Proof</h3>
+      <span class="post-label">Social Proof</span>
+    </div>
+    <div class="post-body">
+      <div class="post-subject">Recommended visual: scoreboard with +36% EBITDA, $100K-$800K added profit</div>
+      <button class="copy-btn" onclick="copyText('li3')">Copy</button>
+      <div id="li3" class="post-text">"Trust the process" won Nick Saban seven national championships. It's also why our dental clients are putting up numbers like these:
+
+- 36% average EBITDA increase, year over year
+- $100K to nearly $800K in added annual profit per practice
+- EBITDA climbing from ~8% of revenue toward 20%+
+
+Same chairs. Same doctors. A better game plan - our PTA process and four-Quad System, run monthly, with someone finally watching the defense.
+
+"In 2023, we increased our net profit by 43% using Bubba's planning program." - Dr. Shelia Harris, DDS
+
+Our clients were introduced to the process, they trusted it, and they're winning.
+
+Curious what your scoreboard could look like? Comment PROCESS below and I'll send the client video - or book directly here: [CALENDAR LINK]
+
+#DentalProfitsInstitute #EBITDA #DentalBusiness #FractionalCFO</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 4 - Goals vs. Systems</h3>
+      <span class="post-label">Education</span>
+    </div>
+    <div class="post-body">
+      <div class="post-subject">Recommended visual: quote card - "You don't rise to your goals. You fall to your systems."</div>
+      <button class="copy-btn" onclick="copyText('li4')">Copy</button>
+      <div id="li4" class="post-text">Ask 100 dental practices their profit goal. Most say the same thing: around 30% EBITDA.
+
+So why are the results so wildly different?
+
+James Clear nailed it: you don't rise to the level of your goals, you fall to the level of your systems.
+
+Goals set the direction. Systems drive the result. Here's the chain almost nobody in dental talks about:
+
+Your process and systems create habits.
+Your habits shape your team's behavior.
+Your team's behavior drives your numbers.
+
+Wanting 30% EBITDA changes nothing. Installing the system that produces it changes everything.
+
+That's our financial planning process, our PTA system (Plan, Track, Assess, Adjust, Accountability), and our four-Quad framework. It's why our clients average a 36% EBITDA increase, year over year.
+
+Same goals as everyone else. Different system. Different results.
+
+Comment SYSTEM and I'll send the client video - or grab a call: [CALENDAR LINK]
+
+#DentalCFO #PracticeManagement #DentalProfits #Systems</div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div id="instagram" class="content">
+  <h2>Instagram Posts &amp; Captions</h2>
+  <div class="note">All posts point to link in bio (video + booking). Keep the first line as the scroll-stopper - Instagram only shows 1-2 lines before "more."</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 1 - Static / Reel Hook</h3>
+      <span class="post-label">Scroll Stopper</span>
+    </div>
+    <div class="post-body">
+      <div class="post-visual"><strong>Visual:</strong> Bold text card on dark navy. Large white text: "YOU'RE LEAVING $100K IN YOUR PRACTICE." Green accent on "$100K". DPI logo bottom right.</div>
+      <button class="copy-btn" onclick="copyText('ig1')">Copy</button>
+      <div id="ig1" class="post-text">You can produce $10M and still feel broke. Here's why.
+
+Revenue is offense - it sells tickets. Profit is the championship. Most dentists were never coached on defense, so the money comes in... and overhead eats it before it gets to you.
+
+Our average client adds 36% to their profit by finally playing both sides of the ball.
+
+Full schedule. Same chairs. A better game plan.
+
+Link in bio - watch the 3-min client video, then book a call.
+
+#dentalpractice #dentist #practiceowner #dentalprofits #dentalcfo</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 2 - Carousel: The 4 Quads</h3>
+      <span class="post-label">5-Slide Carousel</span>
+    </div>
+    <div class="post-body">
+      <div class="post-visual">
+        <strong>Slide format (5 slides, dark navy + amber accents):</strong><br/>
+        Slide 1 (cover): "4 plays that grow your PROFIT - not just your revenue. Swipe -&gt;"<br/>
+        Slide 2 - Quad 1 / Revenue (Offense): Collections, new patients - survival and growth<br/>
+        Slide 3 - Quad 2 / Overhead (Defense): Every dollar on plan, under 60% - protecting what you earned<br/>
+        Slide 4 - Quad 3 / Margins: Grow EBITDA, kill debt - keeping more of what you produce<br/>
+        Slide 5 - Quad 4 / Cash &amp; Freedom: Turn profit into real wealth - link in bio
+      </div>
+      <button class="copy-btn" onclick="copyText('ig2')">Copy</button>
+      <div id="ig2" class="post-text">Most owner-doctors drown in 100 numbers every month.
+
+We turned it into 4 simple plays.
+
+Swipe through - then grab the client video in our bio to see what this looks like for a real practice.
+
+The two things every dentist I talk to actually wants: less time in the chair, more money in the bank. These four plays are how you get both.
+
+Link in bio.
+
+#dentalcfo #dentistlife #practicemanagement #dentalbusiness #dentalquadsystem</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 3 - Proof Reel</h3>
+      <span class="post-label">Social Proof</span>
+    </div>
+    <div class="post-body">
+      <div class="post-visual"><strong>Visual:</strong> Scoreboard graphic. "+36% EBITDA" large. "$100K-$800K added profit" below. Dark navy background, amber numbers. Client testimonial quote overlay.</div>
+      <button class="copy-btn" onclick="copyText('ig3')">Copy</button>
+      <div id="ig3" class="post-text">Same chairs. Same hours. 36% more profit.
+
+That's the average result when our clients trust the process - a real plan, four plays, and someone watching the defense every single month.
+
+"In 2023, we increased our net profit by 43% using Bubba's planning program." - Dr. Shelia Harris, DDS
+
+Two things every dentist wants: less time in the chair, more in the bank. We build the plan that gets you both.
+
+Client video + free call - link in bio.
+
+#dentist #dentalpractice #profitfirst #dentalprofitsinstitute #dentalbusiness</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post 4 - Carousel: Same Goal, Different Results</h3>
+      <span class="post-label">6-Slide Carousel</span>
+    </div>
+    <div class="post-body">
+      <div class="post-visual">
+        <strong>Slide format (6 slides, dark navy + one green accent word per slide):</strong><br/>
+        Slide 1 (cover): "100 dental practices. Same goal: 30% EBITDA. Wildly different results. Why? -&gt;"<br/>
+        Slide 2: "You don't rise to the level of your GOALS. You fall to the level of your SYSTEMS." - James Clear<br/>
+        Slide 3: "Goals set the direction. SYSTEMS drive the result."<br/>
+        Slide 4: "The chain nobody talks about: Systems - Habits - Team behavior - RESULTS."<br/>
+        Slide 5: "Our system: a financial plan built before the year starts + PTA: Plan, Track, Assess, Adjust, Accountability."<br/>
+        Slide 6 (CTA): "Same goal as everyone else. Different system. +36% average EBITDA. Book a call - link in bio."
+      </div>
+      <button class="copy-btn" onclick="copyText('ig4')">Copy</button>
+      <div id="ig4" class="post-text">Everybody wants 30% EBITDA. Almost nobody builds the system to get there.
+
+You don't rise to your goals - you fall to your systems.
+
+Swipe through - then grab the client video in our bio. It's the fastest way to understand what we do and why it works.
+
+Link in bio.
+
+#dentalpractice #dentist #practiceowner #dentalcfo #systems</div>
+    </div>
+  </div>
+</div>
+
+<!-- FACEBOOK -->
+<div id="facebook" class="content">
+  <h2>Facebook Posts</h2>
+  <div class="note">Slightly longer and more conversational than Instagram. Works for organic and boosted/ad copy. Strong direct CTA at end. Replace [CALENDAR LINK] before posting.</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post / Ad 1 - The Defense Pitch</h3>
+      <span class="post-label">Cold Audience</span>
+    </div>
+    <div class="post-body">
+      <button class="copy-btn" onclick="copyText('fb1')">Copy</button>
+      <div id="fb1" class="post-text">Dentists: you can grow your revenue every year and still take home less. It even has a name - profitable stagnation.
+
+It happens because everyone's coaching you on offense (more patients, more production) and no one's coaching you on defense (overhead, margins, cash). Coach Bryant had it right: offense sells tickets, defense wins championships.
+
+At Dental Profits Institute, we install the defense. The result for our average client: a 36% increase in EBITDA, year over year - between $100K and nearly $800K in added profit. Same practice. Better game plan.
+
+You deserve to make more. DPI can get you there.
+
+Book a free 20-minute call - no pitch, just a conversation about your practice: [CALENDAR LINK]</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post / Ad 2 - Goals vs. Systems</h3>
+      <span class="post-label">Warm Audience</span>
+    </div>
+    <div class="post-body">
+      <button class="copy-btn" onclick="copyText('fb2')">Copy</button>
+      <div id="fb2" class="post-text">Ask 100 dental practices their profit goal and most say the same thing: around 30% EBITDA. So why are the results so different?
+
+As James Clear put it: you don't rise to the level of your goals - you fall to the level of your systems.
+
+Most dental practices - from $500K to $15M - have never had a real financial system. They're too small for a full-time CFO, and their CPA does taxes, not strategy. So they set the goal, then hope.
+
+We install the system. Before your year starts, we build your revenue plan, overhead plan, team plan, and marketing plan - then run it every month with our Pano tool, our four-Quad System, and our PTA process (Plan, Track, Assess, Adjust, Accountability).
+
+Same goal as everyone else. Better system. Different outcome.
+
+Book a free 20-minute call and let's talk about what your practice could look like: [CALENDAR LINK]
+
+Or just message us - we read every one.</div>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post / Ad 3 - The $100K Question</h3>
+      <span class="post-label">Direct Response</span>
+    </div>
+    <div class="post-body">
+      <button class="copy-btn" onclick="copyText('fb3')">Copy</button>
+      <div id="fb3" class="post-text">What would $100,000 more in profit mean for your practice?
+
+That's not a hypothetical - it's the floor for our clients. Our average client adds 36% to their EBITDA in year one. The smallest added $100K. The largest added nearly $800K. Same chairs, same team, same schedule.
+
+The difference isn't effort. It's the system.
+
+"In 2023, we increased our net profit by 43% using Bubba's planning program." - Dr. Shelia Harris, DDS, Natomas Crossing Dental Care
+
+If you're a dental practice owner running $500K to $15M in collections and your take-home doesn't match your effort - let's talk. It's a free 20-minute call. No pitch. Just an honest look at what your practice could do with the right system behind it.
+
+Book here: [CALENDAR LINK]</div>
+    </div>
+  </div>
+</div>
+
+<!-- COPY BANK -->
+<div id="copybank" class="content">
+  <h2>Copy Bank</h2>
+  <div class="note">Grab-and-go copy for ads, subject lines, graphics, and bios. All written with the new emotional angle - lead with outcome, not process.</div>
+
+  <div class="section-title">Subject Lines (Email)</div>
+  <div class="post-card"><div class="post-body">
+    <div class="post-text">You're leaving $100K in your practice right now
+[FIRST NAME], this number is going to bother you
+What a $5M practice can hide from you
+Still leaving it on the table?
+This dentist was in your exact shoes. Watch what happened.
+Your CPA does taxes. We grow your profit.
+36% more profit. Same chairs.
+Busier than ever, broker than you should be?
+You don't rise to your goals. You fall to your systems.
+A personal note from Bubba</div>
+  </div></div>
+
+  <div class="section-title">Headlines &amp; Hooks (Ads, Graphics)</div>
+  <div class="post-card"><div class="post-body">
+    <div class="post-text">You're leaving $100K+ in your practice right now.
+You deserve to make more. DPI can get you there.
+Production is vanity. Profit is sanity.
+Offense sells tickets. Defense wins championships.
+36% more profit. Same chairs.
+You don't rise to your goals. You fall to your systems.
+Everybody wants 30% EBITDA. Few build the system to get there.
+Your CPA does taxes. We grow what you keep.
+Everyone coaches your offense. We coach your defense.
+Same goals. Different system. Different results.</div>
+  </div></div>
+
+  <div class="section-title">One-Liners (Bios, Sign-offs, Graphics)</div>
+  <div class="post-card"><div class="post-body">
+    <div class="post-text">CFO-level financial leadership built for dental practices.
+We grow what you actually keep.
+The fractional CFO for dental practices tired of working harder for less.
+Trust the process. Keep the profit.
+Offense sells tickets. We coach the defense that wins championships.</div>
+  </div></div>
+
+  <div class="section-title">Calls to Action</div>
+  <div class="post-card"><div class="post-body">
+    <div class="post-text">Book your free 20-minute discovery call - [CALENDAR LINK]
+Not ready to call? Just reply - I read every message myself.
+Comment PROCESS and I'll send the client video.
+Watch the 3-minute client video - [VIDEO LINK]
+Skip the line and book directly - [CALENDAR LINK]</div>
+  </div></div>
+
+  <div class="section-title">Testimonial Blocks</div>
+  <div class="post-card"><div class="post-body">
+    <div class="post-text">"In 2023, we increased our net profit by 43% using Bubba's planning program. Bubba is the most caring person and truly wants what is best for his clients and works hard to help them achieve the success they desire."
+- Dr. Shelia Harris, DDS - Natomas Crossing Dental Care</div>
+  </div></div>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  event.target.classList.add('active');
+}
+function copyText(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>
