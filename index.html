@@ -1,323 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DPI — Strategy Working Session</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DPI Campaign Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f5f7; color: #1a1a2e; }
-
-    .header { background: #1a2e1a; padding: 36px 48px; color: white; }
-    .header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
-    .header p { color: #a8c5a8; margin-top: 6px; font-size: 14px; }
-    .header .date { color: #7dc87d; font-size: 13px; font-weight: 600; margin-top: 10px; }
-
-    .container { max-width: 900px; margin: 0 auto; padding: 36px 24px; }
-
-    .section { background: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 22px; border: 1px solid #e5e7eb; }
-    .section h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #2d6a2d; margin-bottom: 18px; border-bottom: 2px solid #e5f0e5; padding-bottom: 10px; }
-    .section p { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
-    .section p:last-child { margin-bottom: 0; }
-    .section ul { padding-left: 20px; }
-    .section li { font-size: 14px; line-height: 1.65; color: #374151; margin-bottom: 7px; }
-
-    .hero-box { background: #1a2e1a; color: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 22px; }
-    .hero-box h2 { color: #7dc87d; font-size: 16px; font-weight: 700; margin-bottom: 14px; }
-    .hero-box p { color: #c8dcc8; font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
-    .hero-box p:last-child { margin-bottom: 0; }
-    .hero-box strong { color: white; }
-
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 16px; }
-
-    .card { background: #f8faf8; border: 1px solid #d4e8d4; border-radius: 8px; padding: 16px 18px; }
-    .card h4 { font-size: 13px; font-weight: 700; color: #1a2e1a; margin-bottom: 6px; }
-    .card p { font-size: 13px; color: #4b5563; line-height: 1.55; margin: 0; }
-
-    .decision-card { background: #fffbea; border: 1.5px solid #f0c040; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
-    .decision-card h4 { font-size: 14px; font-weight: 700; color: #7a5200; margin-bottom: 8px; }
-    .decision-card p { font-size: 13px; color: #5a4200; line-height: 1.6; margin-bottom: 8px; }
-    .decision-card .options { font-size: 13px; color: #374151; }
-    .decision-card .options span { display: inline-block; background: white; border: 1px solid #e5c050; border-radius: 4px; padding: 3px 10px; margin: 3px 4px 3px 0; color: #5a4200; font-weight: 600; }
-
-    .ready-tag { display: inline-block; background: #d4edda; color: #155724; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-    .new-tag { display: inline-block; background: #cce5ff; color: #004085; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-    .decide-tag { display: inline-block; background: #fff3cd; color: #856404; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-
-    .email-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
-    .email-row:last-child { border-bottom: none; }
-    .email-num { background: #2d6a2d; color: white; font-size: 12px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-    .email-info h4 { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 4px; }
-    .email-info p { font-size: 13px; color: #6b7280; line-height: 1.5; margin: 0; }
-
-    .anchor-line { background: #f0f9f0; border-left: 4px solid #2d6a2d; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 10px; }
-    .anchor-line p { font-size: 14px; color: #1a2e1a; margin: 0; font-style: italic; }
-    .anchor-line p strong { font-style: normal; }
-
-    .step-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
-    .step-row:last-child { border-bottom: none; }
-    .step-num { background: #1a2e1a; color: #7dc87d; font-size: 13px; font-weight: 800; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-info h4 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
-    .step-info p { font-size: 13px; color: #6b7280; line-height: 1.55; margin: 0; }
-    .owner-dpi { display: inline-block; background: #e8f4e8; color: #2d6a2d; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 6px; }
-    .owner-gr { display: inline-block; background: #e0eeff; color: #0047b3; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 10px; margin-left: 6px; }
-
-    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
-    th { background: #f0f9f0; text-align: left; padding: 10px 12px; font-weight: 600; color: #2d6a2d; border-bottom: 2px solid #d4e8d4; }
-    td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; color: #374151; vertical-align: top; }
-    tr:last-child td { border-bottom: none; }
-
-    @media (max-width: 640px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .header { padding: 24px 20px; }
-      .container { padding: 20px 14px; }
-      .section { padding: 20px 18px; }
-    }
+    :root { --navy: #0d3b6e; --blue: #1565c0; --gold: #f59e0b; }
+    body { background: #0f172a; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+    .tab-btn { transition: all 0.2s; }
+    .tab-btn.active { background: var(--gold); color: #1a1a1a; }
+    .tab-btn:not(.active):hover { background: rgba(245,158,11,0.15); }
+    .decision-option { cursor: pointer; transition: all 0.2s; }
+    .decision-option:hover { border-color: var(--gold); }
+    .decision-option.selected { border-color: var(--gold); background: rgba(245,158,11,0.1); }
+    .email-item { cursor: pointer; transition: all 0.15s; }
+    .email-item:hover { background: rgba(255,255,255,0.07); }
+    .email-item.active { background: rgba(245,158,11,0.15); border-left-color: var(--gold); }
+    .slide-img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+    textarea { resize: vertical; }
+    .copy-btn { transition: all 0.15s; }
+    .copy-btn:hover { background: rgba(245,158,11,0.2); }
+    .copy-btn.copied { background: rgba(34,197,94,0.2); color: #4ade80; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1e293b; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
   </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-<div class="header">
-  <h1>Dental Profits Institute — Strategy Working Session</h1>
-  <p>GenieRocket &amp; DPI · Clarifying Direction &amp; Launch Plan</p>
-  <div class="date">📅 June 2026</div>
+<!-- HEADER -->
+<header style="background: var(--navy);" class="sticky top-0 z-50 shadow-xl">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <img src="https://vibe.filesafe.space/1777060379345832148/attachments/19c0ed22-1cb2-417e-842a-d9b2a15ae93c.png" alt="DPI" class="h-8"/>
+      <span class="text-white font-bold text-lg hidden sm:block">Campaign Hub</span>
+    </div>
+    <nav class="flex gap-2">
+      <button onclick="showTab('strategy')" id="tab-strategy" class="tab-btn active px-4 py-2 rounded-full text-sm font-bold">Strategy</button>
+      <button onclick="showTab('emails')" id="tab-emails" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Emails</button>
+      <button onclick="showTab('assets')" id="tab-assets" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Assets</button>
+      <button onclick="showTab('notes')" id="tab-notes" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Notes</button>
+    </nav>
+  </div>
+</header>
+
+<!-- STRATEGY TAB -->
+<div id="panel-strategy" class="max-w-4xl mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-white mb-1">Strategy Decisions</h2>
+    <p class="text-slate-400 text-sm">Click your choice for each decision. Selections save automatically.</p>
+  </div>
+
+  <div id="decisions-container" class="space-y-6"></div>
 </div>
 
-<div class="container">
-
-  <!-- WHERE WE ARE -->
-  <div class="hero-box">
-    <h2>📍 Where We Are</h2>
-    <p>The original email campaign targeted the <strong>SI client list</strong> — a warm but limited audience who already knows DPI. Those emails are built and sent.</p>
-    <p>DPI has identified a much larger opportunity: <strong>owner-doctors broadly ($500K–$15M revenue)</strong> who are growing collections but not take-home. This is a cold audience that's never heard of DPI — which means the messaging needs to do more heavy lifting.</p>
-    <p>The client has built a complete marketing package with a new angle, new copy, and new visuals — and has shot <strong>real client testimonial videos</strong> that are now in hand. This meeting is about deciding how to deploy all of it.</p>
+<!-- EMAILS TAB -->
+<div id="panel-emails" class="hidden flex h-[calc(100vh-64px)]" style="height:calc(100vh - 56px);">
+  <!-- Sidebar -->
+  <div class="w-64 flex-shrink-0 overflow-y-auto border-r border-slate-700" style="background:#0f1e35;">
+    <div class="p-3 border-b border-slate-700">
+      <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Current Sequence</p>
+    </div>
+    <div id="email-list-current" class="py-2"></div>
+    <div class="p-3 border-b border-t border-slate-700 mt-2">
+      <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">New Game Plan Sequence</p>
+    </div>
+    <div id="email-list-new" class="py-2"></div>
   </div>
-
-  <!-- THE NEW ANGLE -->
-  <div class="section">
-    <h2>🏈 The New Positioning — "Defense Wins Championships"</h2>
-    <p>This is the strategic differentiator that makes DPI stand out from every other dental consultant. Every other consultant is coaching offense — production, case acceptance, new patients. Nobody is coaching defense.</p>
-
-    <div class="anchor-line"><p><strong>"Offense sells tickets. Defense wins championships."</strong> — Bear Bryant</p></div>
-    <div class="anchor-line"><p><strong>"Production is vanity. Profit is sanity."</strong></p></div>
-    <div class="anchor-line"><p><strong>"Your CPA does taxes. We do profit."</strong></p></div>
-    <div class="anchor-line"><p><strong>"Same goals. Different system. Different results."</strong></p></div>
-    <div class="anchor-line"><p><strong>"Trust the process."</strong> — Nick Saban, 7 championships</p></div>
-
-    <p style="margin-top:14px;">These lines are the consistent brand voice across every channel. They remove blame from the doctor ("you don't rise to your goals, you fall to your systems") and position DPI as the missing piece — not a criticism of what they're already doing.</p>
+  <!-- Preview -->
+  <div class="flex-1 flex flex-col">
+    <div id="email-info" class="px-4 py-2 border-b border-slate-700 text-sm text-slate-400 flex items-center gap-2" style="background:#0f1e35;">
+      <span>Select an email to preview</span>
+    </div>
+    <iframe id="email-iframe" class="flex-1 w-full" style="background:white; border:none;"></iframe>
   </div>
-
-  <!-- WHAT'S IN HAND -->
-  <div class="section">
-    <h2>✅ What's Already Built &amp; Ready</h2>
-    <div class="grid-3">
-      <div class="card">
-        <h4>📧 5-Email Sequence</h4>
-        <p>Hook, Villain, Method, Proof, Invitation. Full copy written. Needs video link + booking link.</p>
-      </div>
-      <div class="card">
-        <h4>🎥 Client Testimonial Videos</h4>
-        <p>Shot on client trips — in hand now. Need to identify strongest clip and get hosted.</p>
-      </div>
-      <div class="card">
-        <h4>📱 2 Carousel Designs</h4>
-        <p>Carousel A (Quad System — football theme) + Carousel B (Same Goal / Systems). Fully designed.</p>
-      </div>
-      <div class="card">
-        <h4>💼 4 LinkedIn Posts</h4>
-        <p>Long-form authority posts. Contrarian take, problem, proof, goals vs. systems. Ready.</p>
-      </div>
-      <div class="card">
-        <h4>📸 4 Instagram Captions</h4>
-        <p>Paired to the two carousel designs. Ready to post once video is live.</p>
-      </div>
-      <div class="card">
-        <h4>📣 2 Facebook Ad Copies</h4>
-        <p>Long-form, ready for organic or boosted. Need video link to finalize.</p>
-      </div>
-    </div>
-
-    <p style="margin-top: 18px;"><strong>Previously built by GenieRocket</strong> (for SI list / warm audience):</p>
-    <table>
-      <thead>
-        <tr><th>Email</th><th>Audience</th><th>Role Going Forward</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Main promo (P&amp;L story)</td><td>SI list (warm)</td><td>Keep for warm re-engagement; new Email 1 replaces for cold outreach</td></tr>
-        <tr><td>Follow-up email</td><td>SI list (warm)</td><td>Retire for cold audience; keep for warm nurture</td></tr>
-        <tr><td>Video story email</td><td>SI list (warm)</td><td>Can be used standalone as a video drop for warm list</td></tr>
-        <tr><td>Bubba plain-text email</td><td>Any</td><td>Valuable as a mid-sequence pattern interrupt or personal follow-up</td></tr>
-        <tr><td>Objection handler</td><td>Any</td><td>Use as Email 6 or post-call nurture — still highly relevant</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- THE 5-EMAIL SEQUENCE -->
-  <div class="section">
-    <h2>📧 New 5-Email Sequence — Designed for Cold Owner-Doctor Outreach</h2>
-    <p>Each email is 3–4 days apart. Every email funnels to the testimonial video first, then the booking link.</p>
-
-    <div class="email-row">
-      <div class="email-num">1</div>
-      <div class="email-info">
-        <h4>The Hook — Name the Pain <span class="ready-tag">COPY READY</span></h4>
-        <p>"Production is vanity. Profit is sanity." Opens with offense/defense framing. Introduces the video. CTA: Watch the video.</p>
-      </div>
-    </div>
-    <div class="email-row">
-      <div class="email-num">2</div>
-      <div class="email-info">
-        <h4>The Villain — Why This Happens <span class="ready-tag">COPY READY</span></h4>
-        <p>"Profitable stagnation." Names the enemy so the doctor feels understood. CTA: Watch the video.</p>
-      </div>
-    </div>
-    <div class="email-row">
-      <div class="email-num">3</div>
-      <div class="email-info">
-        <h4>The Method — The System <span class="ready-tag">COPY READY</span></h4>
-        <p>Introduces the Quad System and the PTA Process. James Clear "systems" quote. CTA: Watch video + book call.</p>
-      </div>
-    </div>
-    <div class="email-row">
-      <div class="email-num">4</div>
-      <div class="email-info">
-        <h4>The Proof — Results That Close <span class="ready-tag">COPY READY</span></h4>
-        <p>36% EBITDA average. $100K–$800K per client. Scoreboard language. CTA: Book the call.</p>
-      </div>
-    </div>
-    <div class="email-row">
-      <div class="email-num">5</div>
-      <div class="email-info">
-        <h4>The Invitation — Trust the Process <span class="ready-tag">COPY READY</span></h4>
-        <p>Nick Saban / 7 championships close. Soft reply CTA ("just reply yes"). CTA: Video + book call.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- KEY DECISIONS -->
-  <div class="section">
-    <h2>🤔 Key Decisions to Make Together</h2>
-    <p>These are the open questions that will shape the launch. Walk through each one in this meeting.</p>
-
-    <div class="decision-card">
-      <h4>1. Which video leads the campaign?</h4>
-      <p>Watch the testimonial videos together and identify the strongest 60–90 second clip. The whole campaign funnels here — this decision drives everything else.</p>
-      <div class="options">
-        <span>Most emotional story</span>
-        <span>Best on-camera client</span>
-        <span>Strongest specific result ($X increase)</span>
-        <span>Combine clips into one highlight reel</span>
-      </div>
-    </div>
-
-    <div class="decision-card">
-      <h4>2. Where will the video be hosted?</h4>
-      <p>The video link needs to be finalized before any emails or social posts go live. Pick a platform and get it uploaded.</p>
-      <div class="options">
-        <span>Vimeo</span>
-        <span>YouTube (unlisted)</span>
-        <span>Wistia</span>
-        <span>Landing page embed</span>
-      </div>
-    </div>
-
-    <div class="decision-card">
-      <h4>3. What is the booking link / call CTA?</h4>
-      <p>Every email and social post points to a booking link. Is this a Calendly, a GHL calendar, or a dedicated landing page? The link needs to be confirmed before formatting all emails.</p>
-      <div class="options">
-        <span>Existing Calendly</span>
-        <span>GHL booking page</span>
-        <span>New landing page</span>
-        <span>Keep current: coaresults.railheadceo.com</span>
-      </div>
-    </div>
-
-    <div class="decision-card">
-      <h4>4. Who is sending the cold outreach — and how?</h4>
-      <p>The new target is owner-doctors who don't know DPI yet. Is this a cold email list purchase, an organic LinkedIn play, paid social, or a combination?</p>
-      <div class="options">
-        <span>Cold email list</span>
-        <span>LinkedIn organic</span>
-        <span>Facebook/IG paid ads</span>
-        <span>Referral from existing clients</span>
-        <span>Mix of all</span>
-      </div>
-    </div>
-
-    <div class="decision-card">
-      <h4>5. How should the two campaigns run in parallel?</h4>
-      <p>The SI warm list still exists. Should the warm list get a separate track (existing emails + Bubba personal email) while the new sequence goes to cold owner-doctors — or do we consolidate everything?</p>
-      <div class="options">
-        <span>Two separate tracks</span>
-        <span>Merge into one sequence</span>
-        <span>Pause warm list, focus on cold</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- LAUNCH PLAN -->
-  <div class="section">
-    <h2>🚀 Recommended Launch Plan</h2>
-
-    <div class="step-row">
-      <div class="step-num">1</div>
-      <div class="step-info">
-        <h4>Select the lead video <span class="owner-dpi">DPI</span></h4>
-        <p>Watch the testimonials together. Pick the strongest clip or combine into a 60–90 second highlight. Confirm hosting platform.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">2</div>
-      <div class="step-info">
-        <h4>Host and link the video <span class="owner-dpi">DPI</span></h4>
-        <p>Upload to Vimeo / YouTube / Wistia. Share the URL with GenieRocket to drop into all templates.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">3</div>
-      <div class="step-info">
-        <h4>Format all 5 new emails into GHL-ready HTML <span class="owner-gr">GenieRocket</span></h4>
-        <p>Same branded style as existing templates. Ready to build now — just waiting on video URL and booking link confirmation.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">4</div>
-      <div class="step-info">
-        <h4>Set up the cold outreach channel <span class="owner-dpi">DPI</span></h4>
-        <p>Identify the source of owner-doctor contacts and load into GHL. Confirm sending domain is warmed up.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">5</div>
-      <div class="step-info">
-        <h4>Deploy carousels on LinkedIn + Instagram <span class="owner-dpi">DPI</span> <span class="owner-gr">GenieRocket</span></h4>
-        <p>Both carousel designs are ready. Post Carousel A (Quad System) first, followed by Carousel B a few days later. Pair with the written captions from the package.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">6</div>
-      <div class="step-info">
-        <h4>Launch the 5-email sequence to cold list <span class="owner-gr">GenieRocket</span></h4>
-        <p>Once video is hosted and list is loaded. Email 1 goes out first. 3–4 day cadence through all 5.</p>
-      </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">7</div>
-      <div class="step-info">
-        <h4>Monitor, optimize, and add Email 6 if needed <span class="owner-gr">GenieRocket</span></h4>
-        <p>The objection-handler email is built and ready to add as Email 6 for anyone who opens but doesn't book. Review open/click rates after Email 3 goes out.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- NOTES BOX -->
-  <div class="section" style="border: 1.5px dashed #d4e8d4; background: #f9fdf9;">
-    <h2>📝 Meeting Notes</h2>
-    <p style="color: #9ca3af; font-style: italic;">Use this space to capture decisions made during the meeting...</p>
-    <br><br><br><br><br>
-  </div>
-
 </div>
+
+<!-- ASSETS TAB -->
+<div id="panel-assets" class="hidden max-w-5xl mx-auto px-4 py-8">
+  <div class="mb-6 flex gap-3 flex-wrap">
+    <button onclick="showAsset('carousel-a')" id="asset-tab-carousel-a" class="tab-btn active px-4 py-2 rounded-full text-sm font-bold">Carousel A - Quad System</button>
+    <button onclick="showAsset('carousel-b')" id="asset-tab-carousel-b" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Carousel B - Same Goal</button>
+    <button onclick="showAsset('social')" id="asset-tab-social" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Social Content</button>
+    <button onclick="showAsset('copy-bank')" id="asset-tab-copy-bank" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Copy Bank</button>
+  </div>
+
+  <!-- Carousel A -->
+  <div id="asset-carousel-a">
+    <h3 class="text-lg font-bold text-white mb-4">The Quad System - 5 Slides</h3>
+    <div class="relative">
+      <div id="carousel-a-slides" class="text-center"></div>
+      <div class="flex items-center justify-center gap-4 mt-4">
+        <button onclick="prevSlide('a')" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">Prev</button>
+        <span id="slide-a-counter" class="text-slate-400 text-sm">1 / 5</span>
+        <button onclick="nextSlide('a')" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carousel B -->
+  <div id="asset-carousel-b" class="hidden">
+    <h3 class="text-lg font-bold text-white mb-4">Same Goal, Different Results - 6 Slides</h3>
+    <div class="relative">
+      <div id="carousel-b-slides" class="text-center"></div>
+      <div class="flex items-center justify-center gap-4 mt-4">
+        <button onclick="prevSlide('b')" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">Prev</button>
+        <span id="slide-b-counter" class="text-slate-400 text-sm">1 / 6</span>
+        <button onclick="nextSlide('b')" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-bold">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Content -->
+  <div id="asset-social" class="hidden">
+    <div class="mb-4 flex gap-2">
+      <button onclick="showSocial('linkedin')" id="social-tab-linkedin" class="tab-btn active px-3 py-1.5 rounded-full text-xs font-bold">LinkedIn (4)</button>
+      <button onclick="showSocial('instagram')" id="social-tab-instagram" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold text-slate-300">Instagram (4)</button>
+      <button onclick="showSocial('facebook')" id="social-tab-facebook" class="tab-btn px-3 py-1.5 rounded-full text-xs font-bold text-slate-300">Facebook (2)</button>
+    </div>
+    <div id="social-linkedin" class="space-y-4"></div>
+    <div id="social-instagram" class="hidden space-y-4"></div>
+    <div id="social-facebook" class="hidden space-y-4"></div>
+  </div>
+
+  <!-- Copy Bank -->
+  <div id="asset-copy-bank" class="hidden space-y-6">
+    <div>
+      <h3 class="text-lg font-bold text-white mb-3">Headlines &amp; Hooks</h3>
+      <div id="copy-bank-headlines" class="space-y-2"></div>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-3">One-Liners</h3>
+      <div id="copy-bank-oneliners" class="space-y-2"></div>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-3">Calls to Action</h3>
+      <div id="copy-bank-ctas" class="space-y-2"></div>
+    </div>
+    <div>
+      <h3 class="text-lg font-bold text-white mb-3">Signature Lines</h3>
+      <div id="copy-bank-signatures" class="space-y-2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTES TAB -->
+<div id="panel-notes" class="hidden max-w-3xl mx-auto px-4 py-8">
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-1">Meeting Notes</h2>
+      <p id="notes-status" class="text-slate-400 text-sm">Auto-saving...</p>
+    </div>
+    <div class="flex gap-2">
+      <button onclick="copyNotes()" id="copy-notes-btn" class="copy-btn px-4 py-2 rounded-lg text-sm font-bold border border-slate-600 text-slate-300">Copy Notes</button>
+      <button onclick="downloadNotes()" class="px-4 py-2 rounded-lg text-sm font-bold border border-slate-600 text-slate-300 hover:bg-slate-700">Download .md</button>
+      <button onclick="clearNotes()" class="px-4 py-2 rounded-lg text-sm font-bold border border-red-800 text-red-400 hover:bg-red-900/30">Clear</button>
+    </div>
+  </div>
+  <textarea id="notes-area"
+    class="w-full bg-slate-800 border border-slate-700 rounded-xl p-5 text-slate-200 text-sm leading-relaxed focus:outline-none focus:border-yellow-500"
+    style="min-height:520px; font-family: 'Courier New', monospace;"
+    placeholder="# DPI Strategy Meeting Notes&#10;&#10;## Date:&#10;&#10;## Attendees:&#10;&#10;## Decisions Made&#10;&#10;## Action Items&#10;- [ ] ...&#10;&#10;## Next Steps&#10;"></textarea>
+</div>
+
+<script>
+// ---- DATA ----
+const DECISIONS = [
+  {
+    id: 'lead-video',
+    question: '1. Which video leads the campaign?',
+    note: 'The lead testimonial video is the #1 hook for all cold outreach.',
+    options: [
+      { value: 'bubba-client', label: 'A client Bubba filmed on a trip', desc: 'Most authentic - real relationship, real results' },
+      { value: 'dr-harris', label: 'Dr. Harris (43% profit increase)', desc: 'Named client with specific number - high credibility' },
+      { value: 'multiple', label: 'Use multiple videos - rotate by email', desc: 'Different testimonials for different touch points' },
+      { value: 'tbd', label: 'TBD - need to watch Drive videos first', desc: 'Decision pending video review' }
+    ]
+  },
+  {
+    id: 'target-list',
+    question: '2. Primary target audience for this campaign?',
+    note: 'Client has pivoted from warm SI list to cold owner-doctor outreach.',
+    options: [
+      { value: 'cold-owner', label: 'Cold owner-doctors ($500K-$15M practices)', desc: 'New direction - football/defense framing, video-led' },
+      { value: 'warm-si', label: 'Warm SI client list', desc: 'Original approach - less traction but known audience' },
+      { value: 'both', label: 'Both simultaneously with different sequences', desc: 'Current 5-email P&L sequence for SI, new Game Plan for cold' },
+      { value: 'cold-first', label: 'Cold owner-doctors first, then add SI', desc: 'Test new direction, layer in warm list after' }
+    ]
+  },
+  {
+    id: 'email-sequence',
+    question: '3. Which email sequence to launch?',
+    note: 'Two complete sequences are ready to go.',
+    options: [
+      { value: 'new-gameplan', label: 'New "Game Plan" sequence (football framing)', desc: 'Hook, Villain, Method, Proof, Invitation - sports metaphor' },
+      { value: 'current-pl', label: 'Current P&L/Financial Clarity sequence', desc: 'Is Your P&L Telling You the Full Story? - 5 emails' },
+      { value: 'hybrid', label: 'Hybrid - blend elements from both', desc: 'Video hook from new sequence, P&L proof from current' },
+      { value: 'ab-test', label: 'A/B test both sequences', desc: 'Split list and compare results' }
+    ]
+  },
+  {
+    id: 'video-hosting',
+    question: '4. Where to host the testimonial video(s)?',
+    note: 'Video URL needed before any emails can launch.',
+    options: [
+      { value: 'vimeo', label: 'Vimeo', desc: 'Clean player, professional look, no ads' },
+      { value: 'youtube', label: 'YouTube', desc: 'Free, wide compatibility, but ads and distractions' },
+      { value: 'wistia', label: 'Wistia', desc: 'Best analytics, CTAs built in, email integrations' },
+      { value: 'ghl', label: 'GHL (GoHighLevel)', desc: 'Already in their stack, keeps everything in one place' }
+    ]
+  },
+  {
+    id: 'launch-timeline',
+    question: '5. Target launch timeline?',
+    note: 'What needs to happen before going live?',
+    options: [
+      { value: 'asap', label: 'ASAP - within 1 week', desc: 'Watch videos, pick one, host it, launch' },
+      { value: '2-weeks', label: '2 weeks out', desc: 'Time to edit video, finalize copy, set up GHL sequence' },
+      { value: '30-days', label: '30 days - do it right', desc: 'Edit multiple videos, build full funnel, review before send' },
+      { value: 'phase', label: 'Phased - email first, social after', desc: 'Launch email sequence now, add social content later' }
+    ]
+  }
+];
+
+const EMAILS_CURRENT = [
+  { file: 'emails/01-blueprint.html', label: '01 - The Blueprint', sub: 'Is Your P&L Telling You the Full Story?' },
+  { file: 'emails/02-followup.html', label: '02 - Follow-Up', sub: 'Still Not Getting the Full Picture?' },
+  { file: 'emails/03-video.html', label: '03 - Video/Story', sub: 'Watch the Before & After P&L' },
+  { file: 'emails/04-bubba.html', label: '04 - Bubba Plain-Text', sub: 'Personal note from Bubba' },
+  { file: 'emails/05-objection.html', label: '05 - Objection Handler', sub: 'We Know What You\'re Thinking' }
+];
+
+const EMAILS_NEW = [
+  { file: 'emails/06-hook.html', label: '06 - The Hook', sub: 'Production is vanity. Profit is sanity.' },
+  { file: 'emails/07-villain.html', label: '07 - The Villain', sub: 'Why growing made you LESS profitable' },
+  { file: 'emails/08-method.html', label: '08 - The Method', sub: 'Same goal. Wildly different results.' },
+  { file: 'emails/09-proof.html', label: '09 - The Proof', sub: '36% more profit. Same chairs.' },
+  { file: 'emails/10-trust-process.html', label: '10 - Trust the Process', sub: 'A short, no-pressure invitation' }
+];
+
+const CAROUSEL_A = [
+  { src: 'assets/A1_quads_cover.png', caption: 'Slide 1 - The Quad System Cover' },
+  { src: 'assets/A2_quad1.png', caption: 'Slide 2 - Quad 1: Revenue (Offense)' },
+  { src: 'assets/A3_quad2.png', caption: 'Slide 3 - Quad 2: Overhead (Defense)' },
+  { src: 'assets/A4_quad3.png', caption: 'Slide 4 - Quad 3: Margins' },
+  { src: 'assets/A5_quad4.png', caption: 'Slide 5 - Quad 4: Cash & Fulfillment' }
+];
+
+const CAROUSEL_B = [
+  { src: 'assets/B1_cover.png', caption: 'Slide 1 - Cover: Same Goal, Different Results' },
+  { src: 'assets/B2_quote.png', caption: 'Slide 2 - James Clear Quote' },
+  { src: 'assets/B3_goals_systems.png', caption: 'Slide 3 - Goals vs. Systems' },
+  { src: 'assets/B4_chain.png', caption: 'Slide 4 - The Chain: Systems → Habits → Results' },
+  { src: 'assets/B5_system.png', caption: 'Slide 5 - Our System: PTA Process' },
+  { src: 'assets/B6_cta.png', caption: 'Slide 6 - CTA: +36% EBITDA' }
+];
+
+const SOCIAL = {
+  linkedin: [
+    { title: 'Post 1 - The Contrarian Take', body: `Every dental consultant I know sells the same thing: more patients, more production, more revenue.\n\nAlmost none of them sell more profit. There's a difference, and it's costing owner-doctors a fortune.\n\nProduction and revenue are vanity. Profit is sanity.\n\nCoach Bryant said offense sells tickets, but defense wins championships. In your practice, revenue is the offense - it feels great and fills the schedule. But your defense (overhead, margins, cash) is where the championship is actually won. And nobody's coaching dentists on defense.\n\nThat's the gap we built Dental Profits Institute to close. Our average client adds 36% to their EBITDA, year over year - not by grinding more hours, but by finally playing both sides of the ball.\n\nIf you're producing more every year but your bank account doesn't show it, that's not a you problem. It's a plan problem. 👇 Video in comments.\n\n#DentalPractice #PracticeManagement #DentalProfits #FractionalCFO` },
+    { title: 'Post 2 - Name the Problem', body: `There's a name for working harder every year and taking home less: profitable stagnation.\n\nIt sneaks up on growing practices. Revenue climbs from $1M to $5M to $8M. Everyone's busy. And the owner's take-home percentage quietly shrinks, because overhead grew right alongside revenue - and no one was watching the defense.\n\nMost practices come to us between the high-60s and mid-70s in overhead. Every point above 60% is profit leaving the building. We coach to 60% or less, on plan, every month.\n\nThe fix isn't more reports. It's a plan built before the year starts, and a simple system to run it. A goal without a plan is just a wish.\n\nIf "busier than ever, broker than I should be" hits a nerve, let's talk. 👇\n\n#DentalCFO #DentalPractice #Profitability #Overhead` },
+    { title: 'Post 3 - Proof + Process', body: `"Trust the process" won Nick Saban seven national championships. It's also why our dental clients are putting up numbers like these:\n\n- 36% average EBITDA increase, year over year.\n- $100K to nearly $800K in added annual profit per practice.\n- EBITDA climbing from ~8% of revenue toward 20%+ (we don't stop until 25%).\n\nSame chairs. Same doctors. A better game plan - our PTA process and four-Quad System, run on our Pano tool, with someone finally watching the defense every month.\n\nOur clients were introduced to the process, they trusted it, and they're winning. Curious what your scoreboard could look like? Comment or DM "PROCESS" and I'll send the client video.\n\n#DentalProfitsInstitute #EBITDA #DentalBusiness #FractionalCFO` },
+    { title: 'Post 4 - Goals vs. Systems', body: `Ask 100 dental practices their profit goal. Most will say the same thing: around 30% EBITDA.\n\nSo why are the results so wildly different?\n\nJames Clear nailed it: you don't rise to the level of your goals, you fall to the level of your systems.\n\nGoals set the direction. Systems drive the result. Here's the chain almost nobody talks about: your process and systems create habits → your habits shape your team's behavior → your team's behavior drives your numbers.\n\nWanting 30% EBITDA changes nothing. Installing the system that produces it changes everything. That's our financial planning process and our PTA system - Plan, Track, Assess, Adjust, Accountability - and it's why our clients average a 36% EBITDA increase, year over year.\n\nSame goals as everyone else. Different system. Different results. Comment "SYSTEM" and I'll send the client video.\n\n#DentalCFO #PracticeManagement #DentalProfits #Systems` }
+  ],
+  instagram: [
+    { title: 'IG Post 1 - Bold Text Card', body: `Visual: Bold text card - "PRODUCTION IS VANITY. PROFIT IS SANITY."\n\n---\n\nYou can produce $10M and still feel broke. 💀\n\nRevenue is the offense - it sells tickets. Profit is the championship. Most dentists were never coached on defense, so the money comes in… and walks right back out through overhead.\n\nOur average client adds 36% to their profit by finally playing both sides of the ball. 🏈\n\nLink in bio for the 3-min client video. 🔗\n\n#dentalpractice #dentist #practiceowner #dentalprofits` },
+    { title: 'IG Post 2 - Carousel Caption', body: `Caption for Carousel A (Quad System):\n\nMost owner-doctors drown in 100 numbers every month. We turned it into 4 simple plays. Swipe → then grab the client video in our bio.\n\n#dentalcfo #dentistlife #practicemanagement #dentalbusiness` },
+    { title: 'IG Post 3 - Proof Card', body: `Visual: Scoreboard - "+36% EBITDA" with "$100K-$800K added profit"\n\n---\n\nSame chairs. Same hours. 36% more profit. 📈\n\nThat's the average result when our clients trust the process - a real plan, four plays, and someone watching the defense every single month.\n\nTwo things every dentist wants: less time in the chair, more in the bank. We build the plan that gets you both.\n\n🎥 Client video + free call → link in bio.\n\n#dentist #dentalpractice #profitfirst #dentalprofitsinstitute` },
+    { title: 'IG Post 4 - Carousel Caption', body: `Caption for Carousel B (Same Goal, Different Results):\n\nEverybody wants 30% EBITDA. Almost nobody builds the system to get there. You don't rise to your goals - you fall to your systems. Swipe → then grab the client video in our bio.\n\n#dentalpractice #dentist #practiceowner #dentalcfo #atomichabits` }
+  ],
+  facebook: [
+    { title: 'FB Post 1 - Defense Wins Championships', body: `Dentists: you can grow your revenue every year and still take home less. It even has a name - profitable stagnation.\n\nIt happens because everyone's coaching you on offense (more patients, more production) and no one's coaching you on defense (overhead, margins, cash). Coach Bryant had it right: offense sells tickets, defense wins championships.\n\nAt Dental Profits Institute, we install the defense. The result for our average client: a 36% increase in EBITDA, year over year - between $100K and nearly $800K in added profit. Same practice, better game plan.\n\nWatch a 3-minute video from one of our clients, then book a no-pressure call. 👉 [VIDEO LINK]` },
+    { title: 'FB Post 2 - Goals vs. Systems', body: `Ask 100 dental practices their profit goal and most say the same thing: around 30% EBITDA. So why are the results so different? As James Clear put it: you don't rise to the level of your goals - you fall to the level of your systems.\n\nMost dental practices - from $500K to $15M - have never had a real financial system. They're too small for a full-time CFO, and their CPA does taxes, not strategy. So they set the goal, then fly blind and hope.\n\nWe install the system. Before your year starts, we build your revenue plan, overhead plan, team plan, and marketing plan - then run it every month with our Pano tool, our four-Quad System, and our PTA process (Plan, Track, Assess, Adjust, Accountability).\n\nSame goal as everyone else. Better system. Different outcome. Want to see how? 👉 [VIDEO LINK] - Or just message us - we read every one.` }
+  ]
+};
+
+const COPY_BANK = {
+  headlines: [
+    'Production is vanity. Profit is sanity.',
+    'Offense sells tickets. Profit wins championships.',
+    "You're producing more. Why isn't your bank account?",
+    '36% more profit. Same chairs.',
+    'Busier than ever, broker than you should be?',
+    'A goal without a plan is just a wish.',
+    'Less time in the chair. More in the bank.',
+    'Your CPA does taxes. We do profit.',
+    "Everyone coaches your offense. We coach your defense.",
+    'Same goals. Different systems. Different results.',
+    "You don't rise to your goals. You fall to your systems. (James Clear)",
+    "Everybody wants 30% EBITDA. Few build the system to get there.",
+    'Systems → habits → behavior → results.'
+  ],
+  oneliners: [
+    "The fractional CFO built for dental practices that are tired of working harder for less.",
+    "We grow what you actually keep.",
+    "CFO-level financial leadership - made affordable for the everyday practice.",
+    "Trust the process. Keep the profit."
+  ],
+  ctas: [
+    'Watch the 3-minute client video → [VIDEO LINK]',
+    'Book your discovery call → [BOOKING LINK]',
+    "Not ready to call? Just reply - I read every message myself.",
+    'Comment or DM "PROCESS" and I\'ll send the video.'
+  ],
+  signatures: [
+    '"Offense sells tickets. Defense wins championships." - Bear Bryant',
+    '"Trust the process." - Nick Saban (7 national titles)',
+    '"Production and revenue are vanity. Profit is sanity."',
+    '"A goal without a plan is just a wish."',
+    '"You don\'t rise to the level of your goals. You fall to the level of your systems." - James Clear',
+    '"Same goals as everyone else. Different system. Different results."'
+  ]
+};
+
+// ---- STATE ----
+let carouselA = 0, carouselB = 0;
+
+// ---- INIT ----
+document.addEventListener('DOMContentLoaded', () => {
+  buildDecisions();
+  buildEmailLists();
+  buildCarousels();
+  buildSocial();
+  buildCopyBank();
+  loadNotes();
+});
+
+// ---- TAB SWITCHING ----
+function showTab(tab) {
+  ['strategy','emails','assets','notes'].forEach(t => {
+    const panel = document.getElementById('panel-' + t);
+    const btn = document.getElementById('tab-' + t);
+    if (t === tab) {
+      panel.classList.remove('hidden');
+      if (t === 'emails') panel.classList.add('flex');
+      btn.classList.add('active');
+      btn.classList.remove('text-slate-300');
+    } else {
+      panel.classList.add('hidden');
+      if (t === 'emails') panel.classList.remove('flex');
+      btn.classList.remove('active');
+      btn.classList.add('text-slate-300');
+    }
+  });
+}
+
+// ---- DECISIONS ----
+function buildDecisions() {
+  const saved = JSON.parse(localStorage.getItem('dpi-decisions') || '{}');
+  const container = document.getElementById('decisions-container');
+  container.innerHTML = '';
+  DECISIONS.forEach(d => {
+    const selected = saved[d.id] || null;
+    const html = `
+      <div class="rounded-xl p-5" style="background:#0f1e35; border: 1px solid #1e3a5f;">
+        <h3 class="font-bold text-white text-base mb-1">${d.question}</h3>
+        <p class="text-slate-400 text-xs mb-4">${d.note}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${d.options.map(o => `
+            <div class="decision-option rounded-lg p-3 border border-slate-600 ${selected === o.value ? 'selected' : ''}"
+                 onclick="selectDecision('${d.id}', '${o.value}', this)">
+              <div class="flex items-start gap-2">
+                <div class="mt-0.5 w-4 h-4 rounded-full border-2 flex-shrink-0 flex items-center justify-center ${selected === o.value ? 'border-yellow-400 bg-yellow-400' : 'border-slate-500'}">
+                  ${selected === o.value ? '<div class="w-1.5 h-1.5 rounded-full bg-slate-900"></div>' : ''}
+                </div>
+                <div>
+                  <p class="text-sm font-semibold ${selected === o.value ? 'text-yellow-400' : 'text-white'}">${o.label}</p>
+                  <p class="text-xs text-slate-400 mt-0.5">${o.desc}</p>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        ${selected ? `<p class="text-xs text-green-400 mt-3">✓ Selected: <strong>${d.options.find(o=>o.value===selected)?.label}</strong></p>` : '<p class="text-xs text-slate-500 mt-3">No selection yet</p>'}
+      </div>
+    `;
+    container.insertAdjacentHTML('beforeend', html);
+  });
+}
+
+function selectDecision(id, value, el) {
+  const saved = JSON.parse(localStorage.getItem('dpi-decisions') || '{}');
+  saved[id] = value;
+  localStorage.setItem('dpi-decisions', JSON.stringify(saved));
+  buildDecisions();
+}
+
+// ---- EMAILS ----
+function buildEmailLists() {
+  const cur = document.getElementById('email-list-current');
+  const newL = document.getElementById('email-list-new');
+  EMAILS_CURRENT.forEach((e, i) => cur.insertAdjacentHTML('beforeend', emailItem(e, i, 'cur')));
+  EMAILS_NEW.forEach((e, i) => newL.insertAdjacentHTML('beforeend', emailItem(e, i, 'new')));
+}
+
+function emailItem(e, i, group) {
+  return `<div class="email-item border-l-2 border-transparent px-3 py-2.5 mx-2 rounded-r" onclick="loadEmail('${e.file}', this, '${e.label}')">
+    <p class="text-sm font-semibold text-white">${e.label}</p>
+    <p class="text-xs text-slate-500 mt-0.5">${e.sub}</p>
+  </div>`;
+}
+
+function loadEmail(file, el, label) {
+  document.querySelectorAll('.email-item').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('email-info').innerHTML = `<span class="text-white font-semibold">${label}</span> <span class="text-slate-500">- ${file}</span>`;
+  document.getElementById('email-iframe').src = file;
+}
+
+// ---- CAROUSELS ----
+function buildCarousels() {
+  renderSlide('a', 0);
+  renderSlide('b', 0);
+}
+
+function renderSlide(which, idx) {
+  const arr = which === 'a' ? CAROUSEL_A : CAROUSEL_B;
+  const container = document.getElementById(`carousel-${which}-slides`);
+  const counter = document.getElementById(`slide-${which}-counter`);
+  container.innerHTML = `
+    <img src="${arr[idx].src}" alt="${arr[idx].caption}" class="slide-img mx-auto" style="max-height:500px;"/>
+    <p class="text-slate-400 text-sm mt-3">${arr[idx].caption}</p>
+  `;
+  counter.textContent = `${idx + 1} / ${arr.length}`;
+  if (which === 'a') carouselA = idx;
+  else carouselB = idx;
+}
+
+function prevSlide(which) {
+  const arr = which === 'a' ? CAROUSEL_A : CAROUSEL_B;
+  const cur = which === 'a' ? carouselA : carouselB;
+  renderSlide(which, (cur - 1 + arr.length) % arr.length);
+}
+
+function nextSlide(which) {
+  const arr = which === 'a' ? CAROUSEL_A : CAROUSEL_B;
+  const cur = which === 'a' ? carouselA : carouselB;
+  renderSlide(which, (cur + 1) % arr.length);
+}
+
+// ---- ASSETS TAB SWITCHING ----
+function showAsset(which) {
+  ['carousel-a','carousel-b','social','copy-bank'].forEach(t => {
+    const panel = document.getElementById('asset-' + t);
+    const btn = document.getElementById('asset-tab-' + t);
+    if (t === which) {
+      panel.classList.remove('hidden');
+      btn.classList.add('active');
+      btn.classList.remove('text-slate-300');
+    } else {
+      panel.classList.add('hidden');
+      btn.classList.remove('active');
+      btn.classList.add('text-slate-300');
+    }
+  });
+}
+
+// ---- SOCIAL ----
+function buildSocial() {
+  ['linkedin','instagram','facebook'].forEach(platform => {
+    const container = document.getElementById('social-' + platform);
+    SOCIAL[platform].forEach((post, i) => {
+      container.insertAdjacentHTML('beforeend', socialCard(post, `${platform}-${i}`));
+    });
+  });
+}
+
+function showSocial(platform) {
+  ['linkedin','instagram','facebook'].forEach(p => {
+    const el = document.getElementById('social-' + p);
+    const btn = document.getElementById('social-tab-' + p);
+    if (p === platform) {
+      el.classList.remove('hidden');
+      btn.classList.add('active');
+      btn.classList.remove('text-slate-300');
+    } else {
+      el.classList.add('hidden');
+      btn.classList.remove('active');
+      btn.classList.add('text-slate-300');
+    }
+  });
+}
+
+function socialCard(post, id) {
+  const escaped = post.body.replace(/`/g, '\\`').replace(/\\/g, '\\\\').replace(/\$/g, '\\$');
+  return `
+    <div class="rounded-xl p-5 border border-slate-700" style="background:#0f1e35;">
+      <div class="flex items-start justify-between mb-3">
+        <h4 class="font-bold text-white text-sm">${post.title}</h4>
+        <button class="copy-btn text-xs text-slate-400 px-3 py-1 rounded-full border border-slate-600 flex-shrink-0 ml-3"
+                onclick="copyText(this, document.getElementById('post-${id}').textContent)">Copy</button>
+      </div>
+      <pre id="post-${id}" class="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap font-sans">${post.body}</pre>
+    </div>
+  `;
+}
+
+// ---- COPY BANK ----
+function buildCopyBank() {
+  const sections = {
+    'copy-bank-headlines': COPY_BANK.headlines,
+    'copy-bank-oneliners': COPY_BANK.oneliners,
+    'copy-bank-ctas': COPY_BANK.ctas,
+    'copy-bank-signatures': COPY_BANK.signatures
+  };
+  Object.entries(sections).forEach(([id, items]) => {
+    const container = document.getElementById(id);
+    items.forEach(item => {
+      container.insertAdjacentHTML('beforeend', `
+        <div class="flex items-center justify-between rounded-lg px-4 py-3 border border-slate-700 gap-3" style="background:#0f1e35;">
+          <p class="text-slate-200 text-sm">${item}</p>
+          <button class="copy-btn text-xs text-slate-400 px-3 py-1 rounded-full border border-slate-600 flex-shrink-0"
+                  onclick="copyText(this, '${item.replace(/'/g, "\\'")}')">Copy</button>
+        </div>
+      `);
+    });
+  });
+}
+
+// ---- NOTES ----
+function loadNotes() {
+  const saved = localStorage.getItem('dpi-notes');
+  if (saved) document.getElementById('notes-area').value = saved;
+  updateNotesStatus('Loaded from local storage');
+}
+
+let notesTimer = null;
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('notes-area').addEventListener('input', () => {
+    clearTimeout(notesTimer);
+    notesTimer = setTimeout(() => {
+      localStorage.setItem('dpi-notes', document.getElementById('notes-area').value);
+      updateNotesStatus('Saved');
+    }, 800);
+  });
+});
+
+function updateNotesStatus(msg) {
+  const el = document.getElementById('notes-status');
+  el.textContent = msg + ' - ' + new Date().toLocaleTimeString();
+}
+
+function copyNotes() {
+  const text = document.getElementById('notes-area').value;
+  copyText(document.getElementById('copy-notes-btn'), text);
+}
+
+function downloadNotes() {
+  const text = document.getElementById('notes-area').value;
+  const blob = new Blob([text], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'dpi-meeting-notes.md';
+  a.click();
+}
+
+function clearNotes() {
+  if (confirm('Clear all notes? This cannot be undone.')) {
+    document.getElementById('notes-area').value = '';
+    localStorage.removeItem('dpi-notes');
+    updateNotesStatus('Cleared');
+  }
+}
+
+// ---- UTILS ----
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = btn.id === 'copy-notes-btn' ? 'Copy Notes' : 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
 </body>
 </html>
