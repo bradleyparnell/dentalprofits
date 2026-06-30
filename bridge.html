@@ -33,13 +33,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 24px;
+      padding: 48px 24px 64px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    /* Subtle radial glow */
     .hero::before {
       content: '';
       position: absolute;
@@ -122,62 +121,56 @@
       color: var(--gold);
     }
 
-    /* ---- CTA BLOCK ---- */
-    .cta-block {
+    /* ---- FORM BLOCK ---- */
+    .form-block {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
-      padding: 40px 40px 36px;
-      max-width: 520px;
+      padding: 36px 36px 28px;
+      max-width: 560px;
       width: 100%;
     }
 
-    .cta-label {
-      font-size: 13px;
-      font-weight: 600;
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
       color: var(--gold);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .cta-heading {
+    .form-heading {
       font-size: 22px;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       line-height: 1.25;
     }
 
-    .cta-desc {
+    .form-desc {
       font-size: 15px;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.6);
       line-height: 1.55;
       margin-bottom: 28px;
     }
 
-    .btn-book {
-      display: block;
+    .form-wrap {
       width: 100%;
-      background: var(--gold);
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 800;
-      text-decoration: none;
-      padding: 18px 24px;
-      border-radius: 12px;
-      transition: background 0.2s, transform 0.15s;
-      letter-spacing: 0.01em;
-      text-align: center;
+      border-radius: 8px;
+      overflow: hidden;
     }
 
-    .btn-book:hover {
-      background: var(--gold-lt);
-      transform: translateY(-2px);
+    .form-wrap iframe {
+      width: 100%;
+      height: 578px;
+      border: none;
+      border-radius: 8px;
+      display: block;
     }
 
-    .cta-footnote {
+    .form-footnote {
       font-size: 12px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.3);
       margin-top: 14px;
       text-align: center;
     }
@@ -277,7 +270,7 @@
     }
 
     @media (max-width: 560px) {
-      .cta-block { padding: 28px 24px; }
+      .form-block { padding: 24px 16px; }
       .proof-bar { gap: 10px 20px; }
     }
   </style>
@@ -314,38 +307,53 @@
       </div>
       <div class="proof-item">
         <span class="check">&#10003;</span>
-        <span>20-minute call, no pitch</span>
+        <span>We reach out within 1 business day</span>
       </div>
     </div>
 
-    <!-- CTA Block -->
-    <div class="cta-block">
-      <p class="cta-label">One next step</p>
-      <h2 class="cta-heading">Pick a time. That's it.</h2>
-      <p class="cta-desc">
-        A 20-minute call. We look at your numbers together. You leave knowing exactly where the leak is - whether we work together or not.
+    <!-- Form Block -->
+    <div class="form-block">
+      <p class="form-label">One next step</p>
+      <h2 class="form-heading">Tell us where you're at. We'll take it from there.</h2>
+      <p class="form-desc">
+        Fill out the short form below. Bubba reviews every submission personally and will reach out to schedule a 20-minute call - no pitch, just a real look at your numbers.
       </p>
-      <a href="https://grow.genierocket.com/widget/bookings/discovery-call-dpi" class="btn-book">
-        Book My 20-Minute Call &rarr;
-      </a>
-      <p class="cta-footnote">No sales deck. No commitment. Just clarity.</p>
+      <div class="form-wrap">
+        <iframe
+          src="https://grow.genierocket.com/widget/form/Jiek7jZ9RHyfryWNiN8V"
+          id="inline-Jiek7jZ9RHyfryWNiN8V"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="More Information Form"
+          data-height="578"
+          data-layout-iframe-id="inline-Jiek7jZ9RHyfryWNiN8V"
+          data-form-id="Jiek7jZ9RHyfryWNiN8V"
+          title="More Information Form"
+        ></iframe>
+      </div>
+      <p class="form-footnote">No sales deck. No commitment. Just clarity.</p>
     </div>
 
     <!-- What happens -->
     <div class="what-happens">
-      <p class="what-label">What happens on the call</p>
+      <p class="what-label">What happens next</p>
       <div class="step-list">
         <div class="step-item">
           <span class="step-num">1</span>
-          <p class="step-text"><strong>You tell me where you're at.</strong> Collections, overhead, how much you actually take home. 60 seconds.</p>
+          <p class="step-text"><strong>You fill out the form.</strong> Takes about 60 seconds. Bubba reads every one personally.</p>
         </div>
         <div class="step-item">
           <span class="step-num">2</span>
-          <p class="step-text"><strong>I show you where the gap is.</strong> We've done this with enough practices to spot it fast.</p>
+          <p class="step-text"><strong>We reach out within 1 business day</strong> to schedule a 20-minute call at a time that works for you.</p>
         </div>
         <div class="step-item">
           <span class="step-num">3</span>
-          <p class="step-text"><strong>You decide what makes sense.</strong> No pressure. Most doctors leave with 2-3 things they can act on immediately.</p>
+          <p class="step-text"><strong>You leave the call with clarity.</strong> We'll show you exactly where the gap is - whether we work together or not.</p>
         </div>
       </div>
     </div>
@@ -363,6 +371,8 @@
   <footer class="footer">
     &copy; 2025 Dental Profits Institute. All rights reserved.
   </footer>
+
+  <script src="https://grow.genierocket.com/js/form_embed.js"></script>
 
 </body>
 </html>
