@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Next Step - Dental Profits Institute</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0D1B2A;
+      --blue:   #1A3A5C;
+      --gold:   #C8972A;
+      --gold-lt:#E8B84B;
+      --white:  #FFFFFF;
+      --gray:   #6B7280;
+      --light:  #F3F4F6;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle radial glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(200,151,42,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .headline {
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 900;
+      line-height: 1.1;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .headline em {
+      font-style: normal;
+      color: var(--gold-lt);
+    }
+
+    .sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    /* ---- PROOF BAR ---- */
+    .proof-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 32px;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .proof-item .check {
+      width: 18px;
+      height: 18px;
+      background: rgba(200,151,42,0.2);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    /* ---- CTA BLOCK ---- */
+    .cta-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px 40px 36px;
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .cta-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .cta-heading {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .cta-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    .btn-book {
+      display: block;
+      width: 100%;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 18px 24px;
+      border-radius: 12px;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+      text-align: center;
+    }
+
+    .btn-book:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
+    .cta-footnote {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ---- WHAT HAPPENS ---- */
+    .what-happens {
+      max-width: 520px;
+      width: 100%;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .what-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(200,151,42,0.15);
+      border: 1px solid rgba(200,151,42,0.4);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .step-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ---- BUBBA ---- */
+    .from-bubba {
+      max-width: 520px;
+      width: 100%;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 36px;
+      text-align: center;
+    }
+
+    .bubba-quote {
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .bubba-sig {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .bubba-sig strong {
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 560px) {
+      .cta-block { padding: 28px 24px; }
+      .proof-bar { gap: 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+
+    <img
+      src="https://vibe.filesafe.space/1777060379345832148/attachments/19c0ed22-1cb2-417e-842a-d9b2a15ae93c.png"
+      alt="Dental Profits Institute"
+      class="logo"
+    />
+
+    <p class="eyebrow">Dental Profits Institute</p>
+
+    <h1 class="headline">
+      You clicked because something<br /><em>felt familiar.</em>
+    </h1>
+
+    <p class="sub">
+      Most practice owners earning $1M-$5M+ are leaving $100K or more on the table every year - not because they're not working hard enough, but because no one ever built a defense.
+    </p>
+
+    <!-- Proof bar -->
+    <div class="proof-bar">
+      <div class="proof-item">
+        <span class="check">&#10003;</span>
+        <span>36% avg EBITDA increase</span>
+      </div>
+      <div class="proof-item">
+        <span class="check">&#10003;</span>
+        <span>$100K-$800K added per client</span>
+      </div>
+      <div class="proof-item">
+        <span class="check">&#10003;</span>
+        <span>20-minute call, no pitch</span>
+      </div>
+    </div>
+
+    <!-- CTA Block -->
+    <div class="cta-block">
+      <p class="cta-label">One next step</p>
+      <h2 class="cta-heading">Pick a time. That's it.</h2>
+      <p class="cta-desc">
+        A 20-minute call. We look at your numbers together. You leave knowing exactly where the leak is - whether we work together or not.
+      </p>
+      <a href="https://grow.genierocket.com/widget/bookings/discovery-call-dpi" class="btn-book">
+        Book My 20-Minute Call &rarr;
+      </a>
+      <p class="cta-footnote">No sales deck. No commitment. Just clarity.</p>
+    </div>
+
+    <!-- What happens -->
+    <div class="what-happens">
+      <p class="what-label">What happens on the call</p>
+      <div class="step-list">
+        <div class="step-item">
+          <span class="step-num">1</span>
+          <p class="step-text"><strong>You tell me where you're at.</strong> Collections, overhead, how much you actually take home. 60 seconds.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-num">2</span>
+          <p class="step-text"><strong>I show you where the gap is.</strong> We've done this with enough practices to spot it fast.</p>
+        </div>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <p class="step-text"><strong>You decide what makes sense.</strong> No pressure. Most doctors leave with 2-3 things they can act on immediately.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- From Bubba -->
+    <div class="from-bubba">
+      <p class="bubba-quote">
+        "I read every message and take every call myself. If you're on this page, I want to talk to you."
+      </p>
+      <p class="bubba-sig"><strong>Bubba Cook</strong> - Dental Profits Institute</p>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    &copy; 2025 Dental Profits Institute. All rights reserved.
+  </footer>
+
+</body>
+</html>
