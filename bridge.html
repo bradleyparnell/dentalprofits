@@ -232,6 +232,67 @@
       font-weight: 600;
     }
 
+    /* ---- OR DIVIDER ---- */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 560px;
+      width: 100%;
+      margin: 32px 0 0;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .or-divider span {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      white-space: nowrap;
+    }
+
+    /* ---- CALENDAR CTA ---- */
+    .cal-block {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      margin: 20px 0 0;
+    }
+
+    .cal-block p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .cal-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid rgba(200,151,42,0.6);
+      color: var(--gold-lt);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .cal-btn:hover {
+      background: rgba(200,151,42,0.1);
+      border-color: var(--gold-lt);
+    }
+
     /* ---- BUBBA ---- */
     .from-bubba {
       max-width: 520px;
@@ -339,6 +400,14 @@
       <p class="form-footnote">No sales deck. No commitment. Just clarity.</p>
     </div>
 
+    <!-- Or book directly -->
+    <div class="or-divider"><span>or</span></div>
+
+    <div class="cal-block">
+      <p>Prefer to pick your own time? Book a 20-minute call directly - no form required.</p>
+      <a href="https://grow.genierocket.com/widget/bookings/discovery-call-dpi" class="cal-btn" target="_blank" rel="noopener">Schedule a Call Directly &rarr;</a>
+    </div>
+
     <!-- What happens -->
     <div class="what-happens">
       <p class="what-label">What happens next</p>
@@ -349,7 +418,7 @@
         </div>
         <div class="step-item">
           <span class="step-num">2</span>
-          <p class="step-text"><strong>We reach out within 1 business day</strong> to schedule a 20-minute call at a time that works for you.</p>
+          <p class="step-text"><strong>Bubba reaches out personally</strong> to schedule a 20-minute call at a time that works for you.</p>
         </div>
         <div class="step-item">
           <span class="step-num">3</span>
