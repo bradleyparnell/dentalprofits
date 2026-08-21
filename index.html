@@ -38,6 +38,7 @@
     </div>
     <nav class="flex gap-2">
       <button onclick="showTab('strategy')" id="tab-strategy" class="tab-btn active px-4 py-2 rounded-full text-sm font-bold">Strategy</button>
+      <button onclick="showTab('videos')" id="tab-videos" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">CFO Videos</button>
       <button onclick="showTab('emails')" id="tab-emails" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Emails</button>
       <button onclick="showTab('assets')" id="tab-assets" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Assets</button>
       <button onclick="showTab('notes')" id="tab-notes" class="tab-btn px-4 py-2 rounded-full text-sm font-bold text-slate-300">Notes</button>
@@ -53,6 +54,15 @@
   </div>
 
   <div id="decisions-container" class="space-y-6"></div>
+</div>
+
+<!-- CFO VIDEO SERIES TAB -->
+<div id="panel-videos" class="hidden max-w-4xl mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h2 class="text-2xl font-bold text-white mb-1">CFO Video Series</h2>
+    <p class="text-slate-400 text-sm">10 landing pages, each with its own video, hook, and discovery call CTA. Click any card to open the live page.</p>
+  </div>
+  <div id="video-series-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 </div>
 
 <!-- EMAILS TAB -->
@@ -224,6 +234,19 @@ const DECISIONS = [
   }
 ];
 
+const VIDEO_SERIES = [
+  { file: 'cfo-intro.html', label: 'Video 1 - CFO Series: The Intro', sub: "You've heard you need a CFO. Here's what that actually means." },
+  { file: 'why-cfo.html', label: 'Video 2 - Why CFO & What Does Trust the Process Mean', sub: 'Trust the Process - what that means for your P&L.' },
+  { file: 'cfo-series-overview.html', label: 'Video 3 - Introduction to Dental CFO Services & 8 Videos', sub: 'What you actually get with a Dental CFO, all 8 videos explained.' },
+  { file: 'revenue-plan.html', label: 'Video 4 - Dental FP&A: The Revenue Plan Strategy', sub: "Most practices don't have a plan. They have a wish with a spreadsheet." },
+  { file: 'overhead-management.html', label: 'Video 5 - Overhead Management Done Right', sub: "Your overhead isn't one big leak. It's thirty small ones." },
+  { file: 'pano-financial-xray.html', label: 'Video 6 - PANO: The Quads and the Financial X-Ray', sub: "You're an elite diagnostician - here's how we show you your numbers the same way." },
+  { file: 'profit-first.html', label: 'Video 7 - Profit First for Dentistry: The Cash Management Standard', sub: 'Best production month of the year, and you\u2019re sweating payroll on the 28th.' },
+  { file: 'pta-assess.html', label: 'Video 8 - PTA: The Assess Phase', sub: "Everybody's got a plan, until they get punched in the mouth." },
+  { file: 'cfo-seat.html', label: 'Video 9 - The CFO Seat: The Power of The Room', sub: 'The decision that changes what your practice is worth in 15 years.' },
+  { file: 'trust-the-process.html', label: 'Video 10 - Trust the Process: The Clarity of a CFO', sub: "You're the one everyone else asks. So who do you ask?" }
+];
+
 const EMAILS_CURRENT = [
   { file: 'emails/01-blueprint.html', label: '01 - The Blueprint', sub: 'Is Your P&L Telling You the Full Story?' },
   { file: 'emails/02-followup.html', label: '02 - Follow-Up', sub: 'Still Not Getting the Full Picture?' },
@@ -322,6 +345,7 @@ let carouselA = 0, carouselB = 0;
 // ---- INIT ----
 document.addEventListener('DOMContentLoaded', () => {
   buildDecisions();
+  buildVideoSeries();
   buildEmailLists();
   buildCarousels();
   buildSocial();
@@ -329,9 +353,22 @@ document.addEventListener('DOMContentLoaded', () => {
   loadNotes();
 });
 
+// ---- CFO VIDEO SERIES ----
+function buildVideoSeries() {
+  const container = document.getElementById('video-series-list');
+  VIDEO_SERIES.forEach(v => {
+    container.insertAdjacentHTML('beforeend', `
+      <a href="${v.file}" target="_blank" rel="noopener" class="block rounded-xl p-4 border border-slate-700 hover:border-yellow-500 transition-colors" style="background:#0f1e35;">
+        <p class="text-sm font-semibold text-white">${v.label}</p>
+        <p class="text-xs text-slate-400 mt-1">${v.sub}</p>
+      </a>
+    `);
+  });
+}
+
 // ---- TAB SWITCHING ----
 function showTab(tab) {
-  ['strategy','emails','assets','notes'].forEach(t => {
+  ['strategy','videos','emails','assets','notes'].forEach(t => {
     const panel = document.getElementById('panel-' + t);
     const btn = document.getElementById('tab-' + t);
     if (t === tab) {
