@@ -1,0 +1,45 @@
+/* Pano Intel landing-page brand refresh. Source: panointel.com, 2026-10-26. */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap');
+:root { --pano-navy: #0b2036; --pano-deep-navy: #04121f; --pano-navy-mid: #16344c; --pano-accent: #35c9b8; --pano-teal: #0c6257; --pano-pale-blue: #7ddcf5; --pano-page-bg: #f2f7fa; --pano-band-bg: #e4eef4; --pano-body-text: #2b4356; --pano-muted-text: #3d5a70; --pano-border: #d5e2ea; --pano-warning: #b5382a; --pano-success-dark: #6dd6c6; }
+:root { --navy:var(--pano-navy); --navy-2:var(--pano-navy-mid); --blue:var(--pano-navy-mid); --gold:var(--pano-accent); --gold-lt:var(--pano-accent); --cream:var(--pano-page-bg); --light:var(--pano-page-bg); --ink:var(--pano-navy); --body:var(--pano-body-text); --muted:var(--pano-muted-text); --gray:var(--pano-muted-text); }
+html { background:var(--pano-page-bg); }
+body, .headline, .sub, .problem-text, .cta-sub, .next-video-btn, .card p, .offer p, .share p { font-family:"Libre Franklin", Helvetica, Arial, sans-serif; }
+body { color:var(--pano-body-text); }
+header { background:var(--pano-navy); border-bottom:1px solid #244458; }
+header img, header .logo { width:158px; height:60px; max-height:none; object-fit:contain; }
+.hero, .close, .cta-section { background:var(--pano-deep-navy); color:var(--pano-page-bg); }
+.hero::before { background:radial-gradient(ellipse at center, rgb(53 201 184 / .12) 0%, transparent 70%); }
+.nav-link, .eyebrow, h1 span, .headline .accent, .headline em, .sub-link { color:var(--pano-accent); }
+.hero .sub, .hero .lead, .close p, .cta-sub { color:#d0e0e8; }
+.hero-note, .privacy-note, .video-label { color:#b8d6e6 !important; }
+.intro .eyebrow, .problem-label, .card-label, .num, .arrow, .discover-mark, .offer-step .step-num { color:var(--pano-teal); }
+.intro, .video-section, .discover-section, .next-video-wrap, .series { background:var(--pano-page-bg); }
+.problem-section, .discover-item, .offer-card, .card, .series details { background:#fff; }
+.discover-item, .card, .series details, .faq details, .card-bottom, .video-box { border-color:var(--pano-border); }
+.offer-card, .discover-item, .series details, .card, .video-wrap, .video-box, .form-block { border-radius:4px; }
+.offer-card { border-top-color:var(--pano-accent); }
+.benefit { border-left-color:var(--pano-accent); }
+.discover-mark { border-color:var(--pano-accent); background:rgb(53 201 184 / .12); }
+.offer-step .step-num { border-color:var(--pano-border); }
+.text-link { color:var(--pano-teal); }
+.card:hover { background:var(--pano-page-bg); }
+.btn, .cta-btn, .next-video-btn, .cal-btn {
+ background:var(--pano-accent); color:var(--pano-deep-navy); border:1px solid var(--pano-accent);
+ border-radius:0; box-shadow:none; font-family:"Libre Franklin", Helvetica, Arial, sans-serif; font-weight:800;
+ font-size:14px; letter-spacing:.035em; text-transform:uppercase; line-height:1.5;
+ white-space:normal; max-width:100%; text-align:center;
+}
+.btn:hover, .cta-btn:hover, .next-video-btn:hover, .cal-btn:hover { background:#69ddcf; border-color:#69ddcf; color:var(--pano-deep-navy); box-shadow:none; transform:none; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline:3px solid var(--pano-accent); outline-offset:4px; }
+footer { background:var(--pano-navy); color:#b8d6e6; }
+footer a { color:#b8d6e6; }
+.footer-row { align-items:center; }
+/* The standalone bridge retains its existing form and scheduling embed. */
+body.pano-bridge { background:var(--pano-deep-navy); color:var(--pano-page-bg); }
+.pano-bridge .logo { width:158px; height:60px; max-width:158px; opacity:1; object-fit:contain; }
+.pano-bridge .proof-item, .pano-bridge .form-desc, .pano-bridge .cal-block p, .pano-bridge .step-text, .pano-bridge .bubba-quote { color:#b8d6e6; }
+.pano-bridge .form-footnote, .pano-bridge .what-label, .pano-bridge .or-divider span, .pano-bridge .bubba-sig, .pano-bridge .bubba-sig strong { color:#a6c5d6; }
+.pano-bridge .check, .pano-bridge .step-num { color:var(--pano-accent); border-color:var(--pano-accent); background:rgb(53 201 184 / .12); }
+.pano-bridge .footer { color:#b8d6e6; }
+@media(max-width:600px) { .btn, .cta-btn, .next-video-btn, .cal-btn { padding:14px 20px; } header img, header .logo { width:145px; height:auto; } .nav { gap:16px; } }
+@media(prefers-reduced-motion:reduce) { *, *::before, *::after { scroll-behavior:auto !important; transition:none !important; } }
